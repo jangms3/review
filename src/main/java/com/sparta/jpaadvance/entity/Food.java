@@ -18,7 +18,9 @@ public class Food {
     private String name;
     private double price;
 
-    @OneToMany(mappedBy = "food")
-    // Food 쪽에서도 관계를 맺을 필요가 없다고 생각되면 삭제 해도 됨.
-    private List<Order> orderList = new ArrayList<>();
+    @ManyToOne
+//    (fetch = FetchType.LAZY)
+    //default 가 eager (즉시)임 -> 연관된 정보를 즉시 가져옴.
+    @JoinColumn(name = "user_id")
+    private User user; //옆에 체인같이 생긴게 관계가 맺어짐을 의미함.
 }
